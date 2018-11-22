@@ -2,11 +2,20 @@
 
 文字评论没问题，语音评论待测试。
 
+项目截图:
+
+
 ![项目截图](https://s3.cn-north-1.amazonaws.com.cn/static-documents/nd666/%E7%9C%8B%E7%9C%8B%E4%BE%83%E4%BE%83%E7%94%B5%E5%BD%B1%E8%B5%84%E6%BA%90/%E4%BA%A4%E4%BA%92%E5%9B%BE2.png)
 
+
 项目参考：
+
 https://github.com/zxzxhhhhh/movie-app-udacity
+
+
 https://github.com/LIU-OU/udacity-movie-project
+
+
 https://github.com/YUWA153/code-samples/blob/9eecac2c7a90d0fff6c51f12d8af5faa7efb67b9/src/wx/yipuquzan/cloudFunctions/thumbUp/index.js
 
 
