@@ -1,0 +1,71 @@
+/* miniprogram/pages/movie-detail/movie-detail.wxss */
+
+Page {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.image {
+  position: absolute;
+  top: 40rpx;
+  left: 240rpx;
+  width: 270rpx;
+  height: 400rpx;
+}
+
+.movie-info {
+  position: absolute;
+  top: 100rpx;
+  bottom: 60rpx;
+  left: 25rpx;
+  width: 700rpx;
+  background: white;
+  z-index: -1;
+}
+
+.title {
+  padding: 350rpx 20rpx 20rpx;
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 64rpx;
+  font-weight: bold;
+}
+
+.description-wrap {
+  padding: 20rpx 80rpx;
+  width: 550rpx;
+  height: 350rpx;
+}
+
+.description {
+  font-size: 30rpx;
+  line-height: 45rpx;
+}
+
+.btn-bottom {
+  position: absolute;
+  bottom: 30rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.btn-meta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(151, 151, 151, 0.2);
+  border-radius: 13rpx;
+  margin: 0 50rpx;
+  height: 60rpx;
+}
+
+.btn-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.btn-text {
+  font-size: 30rpx;
+  line-height: 42rpx;
+}

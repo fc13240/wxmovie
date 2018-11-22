@@ -1,0 +1,8 @@
+<!--miniprogram/pages/hots/hots.wxml-->
+<navigator class='movie-card' wx:for='{{movieList}}' wx:key='_id' url='../movie-detail/movie-detail?id={{item._id}}'>
+  <image class='image' src='{{item.image}}' mode='aspectFit'></image>
+  <view class='movie-info'>
+    <view class='title'>{{item.title}}</view>
+    <view class='category'>类型：{{item.category}}</view>
+  </view>
+</navigator>

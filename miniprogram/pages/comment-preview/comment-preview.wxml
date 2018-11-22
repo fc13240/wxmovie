@@ -1,0 +1,32 @@
+<!--miniprogram/pages/comment-preview/comment-preview.wxml-->
+<image class='image' src='{{movieInfo.image}}'></image>
+
+<view class='movie-info'>
+  <view class='title'>{{movieInfo.title}}</view>
+
+
+  <view class='comment-card'>
+    <view class='user-info'>
+      <image class='avatar' src='{{userInfo.avatar}}'></image>
+      <view class='username'>{{userInfo.name}}</view>
+    </view>
+    <view class='comment-info'>
+      <view class='comment-symbol'>"</view>
+      <scroll-view class='description-wrap' scroll-y scroll-with-animation enable-back-to-top>
+        <view class='description'>{{movieInfo.commentText}}</view>
+      </scroll-view>
+    </view>
+  </view>
+
+
+  <view class='btn-bottom'>
+    <view class='btn-meta' bindtap='onTapReEdit'>
+      <image class='btn-image' src='../../images/reedit.png'></image>
+      <view class='btn-text'>重新编辑</view>
+    </view>
+    <view class='btn-meta' bindtap='onTapAddComment'>
+      <image class='btn-image' src='../../images/push.png'></image>
+      <view class='btn-text'>发布影评</view>
+    </view>
+  </view>
+</view>

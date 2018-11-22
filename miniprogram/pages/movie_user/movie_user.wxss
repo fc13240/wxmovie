@@ -1,0 +1,105 @@
+/* miniprogram/pages/movie_user/movie_user.wxss */
+
+Page {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.user-card {
+  margin: 50rpx 27rpx 0;
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+}
+
+.unlogin-btn {
+  margin: 25rpx;
+}
+
+.title {
+  color: orange;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.comments-card {
+  width: 690rpx;
+  height: 250rpx;
+  box-sizing: border-box;
+  margin: 15rpx 30rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 200rpx;
+  height: 250rpx;
+  flex-shrink: 0;
+}
+
+.detail {
+  flex-shrink: 0;
+  margin-left: 30rpx;
+  height: 100%;
+  width: 500rpx;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-title {
+  font-size: 35rpx;
+  line-height: 49rpx;
+  font-weight: bold;
+}
+
+.content {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /** 文字强制只显示1行，多余的用...表示*/
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.username {
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  line-height: 39rpx;
+}
+
+.btn-bottom {
+  width: 750rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 0;
+  background: white;
+  font-size: 35rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.user-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 110rpx;
+}
+
+/* 以下是音频显示部分 */
+
+.voices {
+  margin-left: 0rpx;
+}

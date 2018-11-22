@@ -1,0 +1,19 @@
+<!--miniprogram/pages/comments-list/comments-list.wxml-->
+<navigator class='comment-card' wx:for='{{commentList}}' wx:if='{{commentList}}' wx:key='*this' url='../comment-detail/comment-detail?id={{item._id}}'>
+
+  <view class='user-info'>
+    <image class='avatar' src='{{item.avatarUrl}}' mode='aspectFit'></image>
+    <view class='username'>{{item.nickName}}</view>
+  </view>
+  <!-- 如果内容是文字 -->
+  <view class='content' wx:if='{{item.content}}'>{{item.content}}</view>
+  <!-- 如果内容是音频 -->
+  <view class='voices' wx:if='{{item.voices}}'>
+    <image class='play-status' src='../../images/play.png'></image>
+    <view class='audio-length'>{{item.voice_length}}s</view>
+  </view>
+</navigator>
+
+<navigator class='btn-bottom' url='../movie_index/movie_index'>回到首页</navigator>
+
+<view class='no-comment' wx:if='{{commentList.length==0}}'>还没有任何影评~</view>

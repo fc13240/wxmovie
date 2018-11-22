@@ -1,0 +1,39 @@
+<!--miniprogram/pages/comment-edit/comment-edit.wxml-->
+<view wx:if='{{!userInfo}}'>
+  <view class='user-card'>
+    <view class='login-status'>未登录</view>
+    <view class='login-info'>请点击登录按钮，登录后查看收藏信息。</view>
+  </view>
+  <button class="unlogin-btn" open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+
+</view>
+
+<view wx:if='{{userInfo}}'>
+  <image class='image' src='{{movie.image}}'></image>
+  <view class='movie-info'>
+    <view class='title'>{{movie.title}}</view>
+
+    <textarea class='comment-ipt' placeholder-class='comment-placeholder' placeholder='输入你的影评内容...' auto-focus maxlength='255' bindinput='onInput' wx:if='{{commentType==0}}'></textarea>
+
+    <view wx:if='{{commentType==1}}'>
+      <view class='btn-meta' bindtap='onRecord'>
+        <image class='btn-image' src='../../images/record.png'></image>
+        <view class='btn-text' wx:if='{{recordStatus==false}}'>录音</view>
+        <view class='btn-text' wx:if='{{recordStatus}}'>停止</view>
+      </view>
+      <view class='btn-meta' bindtap='onRecordPreview'>
+        <image class='btn-image' wx:if='{{playing==false}}' src='../../images/play.png'></image>
+        <image class='btn-image' wx:if='{{playing}}' src='../../images/stop.png'></image>
+        <view class='btn-text'>试听</view>
+      </view>
+    </view>
+  </view>
+
+  <navigator class='btn-bottom' url='../comment-preview/comment-preview?movie_id={{movie._id}}&movie_image={{movie.image}}&movie_title={{movie.title}}&commentText={{commentText}}&user_avatar={{userInfo.avatarUrl}}&username={{userInfo.nickName}}' wx:if='{{commentType==0}}'>
+    <view class='meta-text'>完成</view>
+  </navigator>
+
+
+
+  <view class='btn-bottom' bindtap='onTapAddComment' wx:if='{{commentType==1}}'>发布影评</view>
+</view>

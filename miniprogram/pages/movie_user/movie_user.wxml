@@ -1,0 +1,50 @@
+<!--miniprogram/pages/movie_user/movie_user.wxml-->
+<view wx:if='{{!userInfo}}'>
+  <view class='user-card'>
+    <view class='login-status'>未登录</view>
+    <view class='login-info'>请点击登录按钮，登录后查看收藏信息。</view>
+  </view>
+  <button class="unlogin-btn" open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+
+</view>
+
+<view wx:if='{{userInfo}}'>
+  <scroll-view class='user-wrap' scroll-y scroll-with-animation enable-back-to-top>
+    <view class='title'>收藏的影评</view>
+    <navigator class='comments-card' wx:for='{{favorList}}' wx:key="comment_id" url='../comment-detail/comment-detail?id={{item.comment_id}}'>
+      <image class='image' src='{{item.image}}' mode='aspectFit'></image>
+      <view class='detail'>
+        <view class='movie-title'>{{item.title}}</view>
+        <!-- 如果内容为文字 -->
+        <view class='content' wx:if='{{item.content}}'>{{item.content}}</view>
+        <!-- 如果内容为音频 -->
+        <view class='voices' wx:if='{{item.voices}}'>
+          <image class='play-status' src='../../images/play.png'></image>
+          <view class='audio-length'>{{item.voice_length}}s</view>
+        </view>
+        <view class='user-info'>
+          <image class='avatar' src='{{item.avatarUrl}}'></image>
+          <view class='username'>{{item.nickName}}</view>
+        </view>
+      </view>
+    </navigator>
+
+
+    <view class='title'>发布的影评</view>
+    <navigator class='comments-card' wx:for='{{myCommentList}}' wx:key="comment_id" url='../comment-detail/comment-detail?id={{item.comment_id}}'>
+      <image class='image' src='{{item.image}}' mode='aspectFit'></image>
+      <view class='detail'>
+        <view class='movie-title'>{{item.title}}</view>
+        <!-- 如果内容为文字 -->
+        <view class='content' wx:if='{{item.content}}'>{{item.content}}</view>
+        <!-- 如果内容为音频 -->
+        <view class='voices' wx:if='{{item.voices}}'>
+          <image class='play-status' src='../../images/play.png'></image>
+          <view class='audio-length'>{{item.voice_length}}s</view>
+        </view>
+      </view>
+    </navigator>
+  </scroll-view>
+
+  <navigator class='btn-bottom' url='../movie_index/movie_index'>回到首页</navigator>
+</view>

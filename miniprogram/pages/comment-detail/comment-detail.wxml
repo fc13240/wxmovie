@@ -1,0 +1,100 @@
+<!--miniprogram/pages/comment-detail/comment-detail.wxml-->
+<!-- 不需要用户登录信息-->
+<view wx:if='{{!needUserInfo}}'>
+  <image class='image' src='{{movie.image}}'></image>
+
+  <view class='movie-info'>
+    <view class='title'>{{movie.title}}</view>
+
+
+    <view class='comment-card'>
+      <view class='user-info'>
+        <image class='avatar' src='{{comment.avatarUrl}}'></image>
+        <view class='username'>{{comment.nickName}}</view>
+      </view>
+      <view class='comment-info'>
+        <view class='comment-symbol'>"</view>
+        <!-- 如果内容为文字 -->
+        <scroll-view class='description-wrap' wx:if='{{comment.content}}' scroll-y scroll-with-animation enable-back-to-top>
+          <view class='description'>{{comment.content}}</view>
+        </scroll-view>
+        <!-- 如果内容为音频 -->
+        <view class='voices' wx:if='{{comment.voices}}' catchtap='onTapPlay'>
+          <image class='play-status' wx:if='{{playing==false}}' src='../../images/play.png'></image>
+          <image class='play-status' wx:if='{{playing}}' src='../../images/stop.png'></image>
+          <view class='audio-length'>{{comment.voice_length}}s</view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class='btn-bottom'>
+      <view class='btn-meta' bindtap='onTapAddFavor'>
+        <image class='btn-image' src='../../images/favor.png'></image>
+        <view class='btn-text' wx:if='{{!isFavorite}}'>收藏影评</view>
+        <view class='btn-text' wx:if='{{isFavorite}}'>取消收藏</view>
+      </view>
+      <view class='btn-meta' bindtap='onTapWriteComment'>
+        <image class='btn-image' src='../../images/write.png'></image>
+        <view class='btn-text'>写影评</view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 点击底部按钮: 需要用户登录信息-->
+<view wx:if='{{needUserInfo}}'>
+  <!--没有用户登录信息-->
+  <view wx:if='{{!userInfo}}'>
+    <view class='user-card'>
+      <view class='login-status'>未登录</view>
+      <view class='login-info'>请点击登录按钮，登录后查看收藏信息。</view>
+    </view>
+    <button class="unlogin-btn" open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+
+  </view>
+
+  <!--有用户登录信息-->
+  <view wx:if='{{userInfo}}'>
+    <image class='image' src='{{movie.image}}'></image>
+
+    <view class='movie-info'>
+      <view class='title'>{{movie.title}}</view>
+
+
+      <view class='comment-card'>
+        <view class='user-info'>
+          <image class='avatar' src='{{comment.avatarUrl}}'></image>
+          <view class='username'>{{comment.nickName}}</view>
+        </view>
+        <view class='comment-info'>
+          <view class='comment-symbol'>"</view>
+          <!-- 如果内容为文字 -->
+          <scroll-view class='description-wrap' wx:if='{{comment.content}}' scroll-y scroll-with-animation enable-back-to-top>
+            <view class='description'>{{comment.content}}</view>
+          </scroll-view>
+          <!-- 如果内容为音频 -->
+          <view class='voices' wx:if='{{comment.voices}}' catchtap='onTapPlay'>
+            <image class='play-status' wx:if='{{playing==false}}' src='../../images/play.png'></image>
+            <image class='play-status' wx:if='{{playing}}' src='../../images/stop.png'></image>
+            <view class='audio-length'>{{comment.voice_length}}s</view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class='btn-bottom'>
+        <view class='btn-meta' bindtap='onTapAddFavor'>
+          <image class='btn-image' src='../../images/favor.png'></image>
+          <view class='btn-text' wx:if='{{!isFavorite}}'>收藏影评</view>
+          <view class='btn-text' wx:if='{{isFavorite}}'>取消收藏</view>
+        </view>
+        <view class='btn-meta' bindtap='onTapWriteComment'>
+          <image class='btn-image' src='../../images/write.png'></image>
+          <view class='btn-text'>写影评</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

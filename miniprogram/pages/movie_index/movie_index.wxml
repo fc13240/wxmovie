@@ -1,0 +1,23 @@
+<!--miniprogram/pages/movie_index/index.wxml-->
+<navigator url='../movie-detail/movie-detail?id={{movie._id}}'>
+  <image class='image' src='{{movie.image}}' mode='aspectFit'></image>
+</navigator>
+
+
+<view class='title'>{{movie.title}}</view>
+
+<navigator class='comment' wx:if='{{comment}}' url='../comment-detail/comment-detail?id={{comment._id}}'>
+  <image class='avatar' src='{{comment.avatarUrl}}'></image>
+  <view class='comment-text'>{{comment.nickName}} 给你推荐了一部电影</view>
+</navigator>
+
+<view class='bottom-bar'>
+  <navigator class='btn-meta' url='../hots/hots'>
+    <image class='meta-image' src='../../images/hot.png'></image>
+    <view class='meta-text'>热门</view>
+  </navigator>
+  <navigator class='btn-meta' url='../movie_user/movie_user'>
+    <image class='meta-image' src='../../images/user.png'></image>
+    <view class='meta-text'>我的</view>
+  </navigator>
+</view>

@@ -1,0 +1,84 @@
+/* miniprogram/pages/comment-edit/comment-edit.wxss */
+
+Page {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.image {
+  position: absolute;
+  top: 40rpx;
+  left: 240rpx;
+  width: 270rpx;
+  height: 400rpx;
+}
+
+.movie-info {
+  border: 1px solid rgba(151, 151, 151, 0.2);
+  position: absolute;
+  top: 100rpx;
+  bottom: 140rpx;
+  left: 25rpx;
+  width: 700rpx;
+  background: white;
+  z-index: -1;
+}
+
+.title {
+  padding: 350rpx 20rpx 20rpx;
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 64rpx;
+  font-weight: bold;
+}
+
+.comment-ipt {
+  width: 80%;
+  height: 300rpx;
+  padding: 29rpx 34rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  /*左右居中*/
+  margin: 0 auto;
+  /**输入文字居中*/
+  text-align: center;
+}
+
+.comment-placeholder {
+  color: rgba(29, 29, 38, 0.4);
+}
+
+.btn-meta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(151, 151, 151, 0.2);
+  border-radius: 13rpx;
+  height: 70rpx;
+  width: 220rpx;
+  /**父控件中水平居中显示*/
+  margin: 40rpx auto 0;
+}
+
+.btn-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.btn-text {
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+.btn-bottom {
+  width: 750rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 0;
+  background: green;
+  color: white;
+  font-size: 35rpx;
+  line-height: 100rpx;
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+<!--miniprogram/pages/movie-detail/movie-detail.wxml-->
+<image class='image' src='{{movie.image}}'></image>
+
+<view class='movie-info'>
+  <view class='title'>{{movie.title}}</view>
+  <scroll-view class='description-wrap' scroll-y scroll-with-animation enable-back-to-top>
+    <view class='description'>{{movie.description}}</view>
+  </scroll-view>
+
+  <view class='btn-bottom'>
+    <navigator class='btn-meta' url='../comments-list/comments-list?id={{movie._id}}'>
+      <image class='btn-image' src='../../images/eye.png'></image>
+      <view class='btn-text'>查看影评</view>
+    </navigator>
+    <view class='btn-meta' bindtap='showActionSheet'>
+      <image class='btn-image' src='../../images/comment.png'></image>
+      <view class='btn-text'>添加影评</view>
+    </view>
+  </view>
+</view>
