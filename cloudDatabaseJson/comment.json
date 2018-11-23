@@ -1,24 +1,2 @@
-[
-  {
-    "_id" : "W_Zs1pSXoyWmbpuK",
-    "content" : "good",
-    "openId" : "ot1b50D8O……",
-    "movie_id" : "5be250b3089e439ef492ec4e",
-    "avatarUrl" : "https:\/\/wx.qlogo.cn\/mmopen\/vi_32\/Q0j4TwGTfTLibxeR7EiauYe7e0kBUG7LfWkGAh7uZ9q……\/132",
-    "createTime" : {
-      "$date" : "2018-11-22T08:46:14.219Z"
-    },
-    "nickName" : "fc"
-  },
-  {
-    "_id" : "W_ZuN3hEiJmg8OqE",
-    "content" : "good",
-    "openId" : "ot1b50D8O……",
-    "movie_id" : "5be250b3089e439ef492ec46",
-    "avatarUrl" : "https:\/\/wx.qlogo.cn\/mmopen\/vi_32\/Q0j4TwGTfTLibxeR7EiauYe7e0kBUG7LfWkGAh7uZ9q……\/132",
-    "createTime" : {
-      "$date" : "2018-11-22T08:52:07.601Z"
-    },
-    "nickName" : "fc"
-  }
-]
+{"_id":"W_Zs1pSXoyWmbpuKA","content":"good","movie_id":"5be250b3089e439ef492ec4e","createTime":{"$date":"2018-11-22T08:46:14.219Z"},"openId":"ot1b50D8O123456","nickName":"fc","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLibxeR7EiauYe7e0kBUG7LfWkGAh7uZ9qwdbHohwLB0Ip8IGoaxvicnJWn0spichfqTxHLVCfeoAYCYg/132"}
+{"_id":"W_ZuN3hEiJmg8OqEB","content":"good","movie_id":"5be250b3089e439ef492ec46","createTime":{"$date":"2018-11-22T08:52:07.601Z"},"openId":"ot1b50D8O123456","nickName":"fc","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLibxeR7EiauYe7e0kBUG7LfWkGAh7uZ9qwdbHohwLB0Ip8IGoaxvicnJWn0spichfqTxHLVCfeoAYCYg/132"}
