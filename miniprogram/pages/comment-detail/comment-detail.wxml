@@ -20,8 +20,8 @@
         </scroll-view>
         <!-- 如果内容为音频 -->
         <view class='voices' wx:if='{{comment.voices}}' catchtap='onTapPlay'>
-          <image class='play-status' wx:if='{{playing==false}}' src='../../images/play.png'></image>
-          <image class='play-status' wx:if='{{playing}}' src='../../images/stop.png'></image>
+          <image class='play-status' wx:if='{{playing==false}}' src='../../images/music_play_button.png'></image>
+          <image class='play-status' wx:if='{{playing}}' src='../../images/music_pause_button.png'></image>
           <view class='audio-length'>{{comment.voice_length}}s</view>
         </view>
       </view>
@@ -45,15 +45,9 @@
 
 <!-- 点击底部按钮: 需要用户登录信息-->
 <view wx:if='{{needUserInfo}}'>
-  <!--没有用户登录信息-->
-  <view wx:if='{{!userInfo}}'>
-    <view class='user-card'>
-      <view class='login-status'>未登录</view>
-      <view class='login-info'>请点击登录按钮，登录后查看收藏信息。</view>
-    </view>
-    <button class="unlogin-btn" open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+<template is="loginform"/>
 
-  </view>
+  
 
   <!--有用户登录信息-->
   <view wx:if='{{userInfo}}'>

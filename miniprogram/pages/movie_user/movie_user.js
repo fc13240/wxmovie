@@ -16,6 +16,8 @@ Page({
    * 同时获取favorList myCommentList
    */
   getUserInterestLists() {
+
+    console.log("getUserInterestLists")
     wx.cloud.callFunction({
       // 要调用的云函数名称
       name: 'favoritelist'
@@ -70,13 +72,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-    if (this.data.userInfo)
-      this.getUserInterestLists()
+    var that = this
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res.userInfo)
+              that.setData({
+                userInfo: res.userInfo
+              })
+              app.globalData.userInfo = res.userInfo
+            },
+            fail(res) {
+              if (app.globalData.userInfo) {
+                that.setData({
+                  userInfo: app.globalData.userInfo
+                })
+              }
+            }
+          })
+        } else {
+          if (app.globalData.userInfo) {
+            that.setData({
+              userInfo: app.globalData.userInfo
+            })
+          }
+        }
+      },
+      fail(res) {
+        if (app.globalData.userInfo) {
+          that.setData({
+            userInfo: app.globalData.userInfo
+          })
+        }
+      },
+      complete() {
+        wx.showLoading({
+          title: '电影数据加载中',
+        })
+        that.getUserInterestLists()
+      }
+    })
   },
 
   /**

@@ -1,0 +1,8 @@
+<!--miniprogram/template/login.wxml-->
+<template name="loginform">
+  <view class='user-card'>
+    <view class='login-status'>未登录</view>
+    <view class='login-info'>请点击登录按钮，登录后查看收藏信息。</view>
+  </view>
+  <button class="unlogin-btn" open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+</template>

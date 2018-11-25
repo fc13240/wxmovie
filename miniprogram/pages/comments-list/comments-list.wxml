@@ -9,7 +9,7 @@
   <view class='content' wx:if='{{item.content}}'>{{item.content}}</view>
   <!-- 如果内容是音频 -->
   <view class='voices' wx:if='{{item.voices}}'>
-    <image class='play-status' src='../../images/play.png'></image>
+    <image class='play-status' src='../../images/music_play_button.png'></image>
     <view class='audio-length'>{{item.voice_length}}s</view>
   </view>
 </navigator>

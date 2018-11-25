@@ -182,7 +182,7 @@ Page({
           if (res)//有评论 跳转到该评论的影评详情页面
           {
             wx.navigateTo({
-              url: `../comment-detail/comment-detail?id=${res._id}`,
+              url: `../comment-detail/comment-detail?id=${res[0]._id}`,
             })
           } else {//无评论 弹出底部菜单，添加影评，跳转到影评编辑页面
             this.showActionSheet()
@@ -305,19 +305,55 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
+    var that = this
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res.userInfo)
+              that.setData({
+                userInfo: res.userInfo
+              })
+              app.globalData.userInfo = res.userInfo
+            },
+            fail(res) {
+              if (app.globalData.userInfo) {
+                that.setData({
+                  userInfo: app.globalData.userInfo
+                })
+              }
+            }
+          })
+        } else {
+          if (app.globalData.userInfo) {
+            that.setData({
+              userInfo: app.globalData.userInfo
+            })
+          }
+        }
+      },
+      fail(res) {
+        if (app.globalData.userInfo) {
+          that.setData({
+            userInfo: app.globalData.userInfo
+          })
+        }
+      },
+      complete() {
+        let commentID = options.id
+        that.getComment(commentID)
 
-    let commentID = options.id
-    this.getComment(commentID)
+        that.isFavorite(commentID)
 
-    this.isFavorite(commentID)
+        // 这里为什么放到函数onTapPlay中是不行的（if中可以调用，else中不行）
+        that.innerAudioContext = wx.createInnerAudioContext()
 
-    // 这里为什么放到函数onTapPlay中是不行的（if中可以调用，else中不行）
-    this.innerAudioContext = wx.createInnerAudioContext()
+      }
+    })
+
   },
 
 

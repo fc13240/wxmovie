@@ -62,3 +62,24 @@ Page {
   text-align: center;
   margin: 30 auto;
 }
+
+.voices {
+  margin-left: 30rpx;
+  display: flex;
+  line-height: 60rpx;
+  width: 50%;
+  background:#DBE2E8;
+  border-radius: 10rpx;
+  vertical-align: middle;
+}
+
+.play-status{
+  padding-left: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  padding-top:10rpx;
+}
+
+.audio-length{
+  margin-left: 10rpx;
+}

@@ -25,7 +25,8 @@ exports.main = async (event, context) => {
 
       console.log("movie_id:", movie_id)
       let CommentList = await db.collection('comment').where({
-        movie_id: movie_id
+        movie_id: movie_id,
+        openId: event.userInfo.openId
       })
         .get()
       console.log("CommentList.data:", CommentList.data)

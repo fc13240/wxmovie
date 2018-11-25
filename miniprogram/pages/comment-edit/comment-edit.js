@@ -1,4 +1,5 @@
 // miniprogram/pages/comment-edit/comment-edit.js
+const md5new = require('../../util/md5new.js')
 const app = getApp()
 Page({
 
@@ -93,19 +94,28 @@ Page({
   },
   uploadVoice(cb) {
     console.log('上传录音文件')
+    let md5str = md5new.hex_md5(this.data.userInfo.avatarUrl + this.data.commentVoice);
+    let timestamp = Date.now();
     let nameStr = this.data.commentVoice.split('.');
-    let cloudPath = `${nameStr[nameStr.length - 2]}.${nameStr[nameStr.length - 1]}`;
+    let postfix = this.data.commentVoice.match(/\.[^.]+?$/)[0];
+
+    let cloudPath = 'comment-upload/' + md5str + '_' + timestamp + postfix;
+
+    console.log(cloudPath)
 
     console.log(this.data.commentVoice)
     wx.cloud.uploadFile({
-      cloudPath: '/6d6f-movie-e0f89a/comment-upload/' + cloudPath,
+      cloudPath: cloudPath,
       filePath: this.data.commentVoice, // 小程序临时文件路径
       success: res => {
         // get resource ID
         console.log(res.fileID)
+        cb & cb(res.fileID)
       },
       fail: err => {
         // handle error
+        console.log(err)
+        cb & cb('')
       }
     })
 
@@ -135,7 +145,7 @@ Page({
         success: (result) => {
           console.log(result)
           wx.hideLoading()
-          if (result.result.data.length) {
+          if (result.result) {
             wx.showToast({
               title: '评论成功',
             })
@@ -201,65 +211,101 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
+  onLoad: function (options) {
+    var that = this
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res.userInfo)
+              that.setData({
+                userInfo: res.userInfo
+              })
+              app.globalData.userInfo = res.userInfo
+            },
+            fail(res) {
+              if (app.globalData.userInfo) {
+                that.setData({
+                  userInfo: app.globalData.userInfo
+                })
+              }
+            }
+          })
+        } else {
+          if (app.globalData.userInfo) {
+            that.setData({
+              userInfo: app.globalData.userInfo
+            })
+          }
+        }
+      },
+      fail(res) {
+        if (app.globalData.userInfo) {
+          that.setData({
+            userInfo: app.globalData.userInfo
+          })
+        }
+      },
+      complete() {
+        let commentType = options.type
+        that.setData({
+          commentType
+        })
+        wx.cloud.callFunction({
+          // 要调用的云函数名称
+          name: 'moviedetails',
+          // 传递给云函数的event参数
+          data: {
+            _id: options.movieID
+          }
+        }).then(res => {
+          // output: res.result === 3
+          console.log("res:", res)
+          wx.hideLoading()
+          that.setData({
+            movie: res.result.data[0]
+          })
+        }).catch(err => {
+          // handle error
+        })
 
-    let commentType = options.type
-    this.setData({
-      commentType
-    })
-    wx.cloud.callFunction({
-      // 要调用的云函数名称
-      name: 'moviedetails',
-      // 传递给云函数的event参数
-      data: {
-        _id: options.movieID
+
+        // 这里为什么放到函数onTapPlay中是不行的（if中可以调用，else中不行）
+        that.innerAudioContext = wx.createInnerAudioContext()
+
       }
-    }).then(res => {
-      // output: res.result === 3
-      console.log("res:", res)
-      wx.hideLoading()
-      this.setData({
-        movie: res.result.data[0]
-      })
-    }).catch(err => {
-      // handle error
     })
 
-
-    // 这里为什么放到函数onTapPlay中是不行的（if中可以调用，else中不行）
-    this.innerAudioContext = wx.createInnerAudioContext()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     this.innerAudioContext.stop();
     console.log("onUnload: Stop Playing!")
   },
@@ -267,21 +313,21 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

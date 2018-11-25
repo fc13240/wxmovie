@@ -1,11 +1,7 @@
 <!--miniprogram/pages/movie_user/movie_user.wxml-->
 <view wx:if='{{!userInfo}}'>
-  <view class='user-card'>
-    <view class='login-status'>未登录</view>
-    <view class='login-info'>请点击登录按钮，登录后查看收藏信息。</view>
-  </view>
-  <button class="unlogin-btn" open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
-
+<import src="../../template/login.wxml"/>
+<template is="loginform"/>
 </view>
 
 <view wx:if='{{userInfo}}'>
@@ -19,7 +15,7 @@
         <view class='content' wx:if='{{item.content}}'>{{item.content}}</view>
         <!-- 如果内容为音频 -->
         <view class='voices' wx:if='{{item.voices}}'>
-          <image class='play-status' src='../../images/play.png'></image>
+          <image class='play-status' src='../../images/music_play_button.png'></image>
           <view class='audio-length'>{{item.voice_length}}s</view>
         </view>
         <view class='user-info'>
@@ -39,7 +35,7 @@
         <view class='content' wx:if='{{item.content}}'>{{item.content}}</view>
         <!-- 如果内容为音频 -->
         <view class='voices' wx:if='{{item.voices}}'>
-          <image class='play-status' src='../../images/play.png'></image>
+          <image class='play-status' src='../../images/music_play_button.png'></image>
           <view class='audio-length'>{{item.voice_length}}s</view>
         </view>
       </view>
