@@ -34,7 +34,7 @@
         <view class='btn-text' wx:if='{{!isFavorite}}'>收藏影评</view>
         <view class='btn-text' wx:if='{{isFavorite}}'>取消收藏</view>
       </view>
-      <view class='btn-meta' bindtap='onTapWriteComment'>
+      <view wx:if='{{showOrHidden}}' class='btn-meta' bindtap='showActionSheet'>
         <image class='btn-image' src='../../images/write.png'></image>
         <view class='btn-text'>写影评</view>
       </view>

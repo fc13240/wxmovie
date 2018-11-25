@@ -31,6 +31,26 @@ exports.main = async (event, context) => {
         .get()
       console.log("CommentList.data:", CommentList.data)
       await Promise.all(CommentList.data.map(async (comment) => {
+
+        let comment_id = comment._id
+
+        myCommentList.push({
+          "comment_id": comment_id,
+          "image": movie.image,
+          "title": movie.title,
+          "content": comment.content,
+          "voices": comment.voices,
+          "voice_length": comment.voice_length
+        })
+
+      }));
+
+      let CommentAllList = await db.collection('comment').where({
+        movie_id: movie_id
+      })
+        .get()
+      console.log("CommentAllList.data:", CommentAllList.data)
+      await Promise.all(CommentList.data.map(async (comment) => {
         //耗时操作
         let comment_id = comment._id
 
@@ -56,18 +76,7 @@ exports.main = async (event, context) => {
           })
         }));
 
-
-        myCommentList.push({
-          "comment_id": comment_id,
-          "image": movie.image,
-          "title": movie.title,
-          "content": comment.content,
-          "voices": comment.voices,
-          "voice_length": comment.voice_length
-        })
-
       }));
-
 
     }));
 

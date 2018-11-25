@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    movie: {}
+    movie: {},
+    showOrHidden: false //判断是否显示添加影评按钮，true表示显示，反之隐藏
   },
   // 底部弹出按钮菜单
   showActionSheet() {
@@ -23,6 +24,29 @@ Page({
       }
     })
   },
+
+  /***
+* 获取该用户对该电影的评论
+* 登陆之后调用 
+*/
+  getUserComment({ movie_id, cb }) {
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'commentuser',
+      // 传递给云函数的event参数
+      data: {
+        movie_id: movie_id
+      }
+    }).then(res => {
+      // output: res.result === 3
+      console.log("res:", res)
+      wx.hideLoading()
+      cb & cb(res.result.data)
+    }).catch(err => {
+      // handle error
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -40,10 +64,28 @@ Page({
     }).then(res => {
       // output: res.result === 3
       console.log("res:", res)
-      wx.hideLoading()
+
       this.setData({
         movie: res.result.data[0]
       })
+
+      //获取该用户对该电影的评价信息
+      this.getUserComment({
+        movie_id: options.id,
+        cb: res => {
+          console.log(res)
+          if (res.length)//有评论 跳转到该评论的影评详情页面
+          {
+
+          } else {
+            this.setData({
+              showOrHidden: true
+            })
+          }
+
+        }
+      })
+
     }).catch(err => {
       // handle error
     })

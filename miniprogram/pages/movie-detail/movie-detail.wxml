@@ -12,7 +12,7 @@
       <image class='btn-image' src='../../images/eye.png'></image>
       <view class='btn-text'>查看影评</view>
     </navigator>
-    <view class='btn-meta' bindtap='showActionSheet'>
+    <view wx:if='{{showOrHidden}}' class='btn-meta' bindtap='showActionSheet' >
       <image class='btn-image' src='../../images/comment.png'></image>
       <view class='btn-text'>添加影评</view>
     </view>

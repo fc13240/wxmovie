@@ -23,7 +23,9 @@ Page({
 
     playing: false, //录音影评是否为播放状态
 
-    isFavorite: false
+    isFavorite: false,
+    showOrHidden: false //判断是否显示写影评按钮，true表示显示，反之隐藏
+
   },
   onGotUserInfo(res) {
 
@@ -128,6 +130,22 @@ Page({
         this.setData({
           movie: res.result.data[0]
         })
+
+        this.getUserComment({
+          movie_id: res.result.data[0]._id,
+          cb: res => {
+            console.log(res)
+            if (res.length)//有评论 跳转到该评论的影评详情页面
+            {
+
+            } else {
+              this.setData({
+                showOrHidden: true
+              })
+            }
+          }
+        })
+
       }).catch(err => {
         // handle error
       })
@@ -344,9 +362,13 @@ Page({
       },
       complete() {
         let commentID = options.id
+
         that.getComment(commentID)
 
         that.isFavorite(commentID)
+
+
+
 
         // 这里为什么放到函数onTapPlay中是不行的（if中可以调用，else中不行）
         that.innerAudioContext = wx.createInnerAudioContext()
